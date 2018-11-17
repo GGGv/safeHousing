@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Form Input</title>
+    <meta charset="utf-8" />
+    <script src="search.js"></script>
+    <link rel = "stylesheet" type = "text/css" href = "mystyle.css">
+
+
+</head>
+
+<body>
+    <h1>Housing Search</h1>
+
+    <form action = "myServlet" id = "formid" method="POST" name ="myForm">
+
+        <p><label>Housing Name</label><input id="name" type="text" name="name" /></p>
+        <p><label>Address</label><input id="address" type="text" name="address"/></p>
+        <p><label>Zip Code</label><input id="zipcode" type="text" name="zipcode" /></p> 
+        <p>
+                <input type="submit" value="Search">
+                <input type="button" onclick="this.form.reset()" value="Cancel">            
+        </p>       
+
+    </form>
+
+<br><br>
+</body>
+</html>

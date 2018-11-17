@@ -1,0 +1,72 @@
+body
+{
+    text-align: center;
+    margin: 0;
+}
+
+h1 
+{
+    font-family: Arial;
+    color: maroon;
+}
+
+#formid
+{
+    width: 350px;
+    margin: 16px auto;
+    text-align: left;
+    color: maroon;
+
+    padding: 10px;
+    border-radius: 5px; 
+    border: 1px solid red;
+
+}
+
+
+#append
+{
+    width: 250px;
+    margin: 16px auto;
+    color: maroon;
+    text-align: left;
+
+    padding: 10px;
+    border-radius: 5px; 
+}
+
+
+p.ita
+{
+    font-style: italic;
+}
+
+#map {
+    position: absolute;
+    left: 20px;
+    width: 45%;
+    height: 600px;  /* The height is 400 pixels */
+    border: 3px solid #73AD21;
+    padding: 10px;     
+}
+
+#RecommandList
+{ 
+    position: absolute;
+    right: 20px;
+    width: 45%;
+    height: 600px;  /* The height is 400 pixels */
+    padding: 10px;     
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
