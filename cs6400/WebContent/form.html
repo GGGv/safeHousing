@@ -15,9 +15,13 @@
 
     <form action = "myServlet" id = "formid" method="POST" name ="myForm">
 
-        <p><label>Housing Name</label><input id="name" type="text" name="name" /></p>
-        <p><label>Address</label><input id="address" type="text" name="address"/></p>
-        <p><label>Zip Code</label><input id="zipcode" type="text" name="zipcode" /></p> 
+        <p><label>City</label><input id="city" type="text" name="city" list="cityName"/>
+        <p><label>Address(optional)</label><input id="address" type="text" name="address"/></p>
+        <p><label>Location(optional)</label><input id="zipcode" type="text" name="zipcode" /></p>
+        <p><label>Bed</label><input id="bed" type="text" name="bed" required="required"/></p> 
+        <p><label>Bath</label><input id="bath" type="text" name="bath" required="required"/></p> 
+        <p><label>Price from($)</label><input id="price1" type="text" name="price1" required="required"/></p>
+        <p><label>Price to($)</label><input id="price2" type="text" name="price2" required="required"/></p>   
         <p>
                 <input type="submit" value="Search">
                 <input type="button" onclick="this.form.reset()" value="Cancel">            
