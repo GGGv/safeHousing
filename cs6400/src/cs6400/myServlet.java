@@ -67,76 +67,83 @@ public class myServlet extends HttpServlet {
 		  List<Pair> list = new ArrayList<Pair>();
 		  
 	      // JDBC driver name and database URL
-	      final String DB_URL="jdbc:mysql://localhost/Crime";
-
-	      //  Database credentials
-	      final String USER = "root";
-	      final String PASS = "Lindaniu*126";
-
-	      try {
-	         // Register JDBC driver
-	         Class.forName("com.mysql.jdbc.Driver");
-
-	         // Open a connection
-	         Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
-	         // find house based on baths,beds and price
-	         Statement stmt = conn.createStatement();
-	         String sql;
-	         sql = String.format("SELECT * FROM house WHERE beds=%s AND baths=%s AND price>%s AND price<%s",
-	        		 request.getParameter("bed"), request.getParameter("bath"),request.getParameter("price1"),request.getParameter("price2"));
-	         ResultSet rs = stmt.executeQuery(sql);
-
-	         // Extract data from result set
-	         while(rs.next()){
-	            int id  = rs.getInt("id");
-	            //Search crime in the block and calculate crime score
-	            double la = rs.getDouble("latitude"), lo = rs.getDouble("longitude");
-	            int score = calDangerLevel(la,lo,conn);
-	            Pair pair = new Pair();
-	            pair.setL(id);
-	            pair.setR(score);
-	            list.add(pair);
-	         }
-	         
-	         //Sort house
-	         Collections.sort(list);
+//	      final String DB_URL="jdbc:mysql://localhost/Crime";
+//
+//	      //  Database credentials
+//	      final String USER = "root";
+//	      final String PASS = "Lindaniu*126";
+//
+//	      try {
+//	         // Register JDBC driver
+//	         Class.forName("com.mysql.jdbc.Driver");
+//
+//	         // Open a connection
+//	         Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+//
+//	         // find house based on baths,beds and price
+//	         Statement stmt = conn.createStatement();
+//	         String sql;
+//	         sql = String.format("SELECT * FROM house WHERE beds=%s AND baths=%s AND price>%s AND price<%s",
+//	        		 request.getParameter("bed"), request.getParameter("bath"),request.getParameter("price1"),request.getParameter("price2"));
+//	         ResultSet rs = stmt.executeQuery(sql);
+//
+//	         // Extract data from result set
+//	         while(rs.next()){
+//	            int id  = rs.getInt("id");
+//	            //Search crime in the block and calculate crime score
+//	            double la = rs.getDouble("latitude"), lo = rs.getDouble("longitude");
+//	            int score = calDangerLevel(la,lo,conn);
+//	            Pair pair = new Pair();
+//	            pair.setL(id);
+//	            pair.setR(score);
+//	            list.add(pair);
+//	         }
+//	         
+//	         //Sort house
+//	         Collections.sort(list);
 	         
 		      // Set response content type
-		      response.setContentType("text/html");
-		      PrintWriter out = response.getWriter();
-		      String title = "Database Result";
-		      
-		      String docType =
-		         "<!doctype html public \"-//w3c//dtd html 4.0 " + "transitional//en\">\n";
-		      
-		      out.println(docType +
-		         "<html>\n" +
-		         "<head><title>" + title + "</title></head>\n" +
-		         "<style> # map { height: 100%; } </style>\n" +
-		         "<body bgcolor = \"#f0f0f0\">\n" +
-		         "<h1 align = \"center\">" + title + "</h1>\n"
-		         );
-		      
-	         //Display housing information
-	         for(Pair pair : list) {
-		         out.println("ID: " + pair.getL() + "<br>");
-		         out.println("Score:" + pair.getR() + "<br>");
-	         }
+//		      response.setContentType("text/html");
+//		      PrintWriter out = response.getWriter();
+//		      String title = "Database Result";
+//		      
+//		      String docType =
+//		         "<!doctype html public \"-//w3c//dtd html 4.0 " + "transitional//en\">\n";
+//		      
+//		      out.println(docType +
+//		         "<html>\n" +
+//		         "<head><title>" + title + "</title></head>\n" +
+//		         "<style> # map { height: 100%; } </style>\n" +
+//		         "<body bgcolor = \"#f0f0f0\">\n" +
+//		         "<h1 align = \"center\">" + title + "</h1>\n"
+//		         );
+//		      
+//	         //Display housing information
+//	         for(Pair pair : list) {
+//		         out.println("ID: " + pair.getL() + "<br>");
+//		         out.println("Score:" + pair.getR() + "<br>");
+//	         }
+//	         
+//	         out.println("</body></html>");
 	         
-	         out.println("</body></html>");
 	         
-	         // Clean-up environment
-	         rs.close();
-	         stmt.close();
-	         conn.close();
-	      } catch(SQLException se) {
-	         //Handle errors for JDBC
-	         se.printStackTrace();
-	      } catch(Exception e) {
-	         //Handle errors for Class.forName
-	         e.printStackTrace();
-	      }
+	         RequestDispatcher view = request.getRequestDispatcher("/WebContent/display.html");
+	         view.forward(request, response);    
+	     
+	         
+	         
+	         
+//	         // Clean-up environment
+//	         rs.close();
+//	         stmt.close();
+//	         conn.close();
+//	      } catch(SQLException se) {
+//	         //Handle errors for JDBC
+//	         se.printStackTrace();
+//	      } catch(Exception e) {
+//	         //Handle errors for Class.forName
+//	         e.printStackTrace();
+//	      }
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
