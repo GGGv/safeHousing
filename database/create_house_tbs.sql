@@ -15,5 +15,5 @@ select id,type,lot,year,dayson
 from house;
 
 create table house_price as
-select sf,pricesf,price
+select id, sf,pricesf,price
 from house;
