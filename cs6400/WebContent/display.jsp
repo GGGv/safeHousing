@@ -40,25 +40,48 @@
 
         </table>
     </div>
-    
+
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbtPOHg_6oCT51HCFeTF1zb4vGv3pcG_E&callback=initMap">
     </script>
-    
+     
     <script>
+    
  	// Initialize and add the map
     function initMap() {
       // The location of atlanta
-      var atlanta = {lat: 33.753746, lng: -84.386330};
+      var houses = '${houseInfo}';
+      //var NY = {lat: 40.730610, lng: -73.935242};
+      var NY = {lat: houses[1].latitude, lng: houses[1].longitude};
+      
       // The map, centered at atlanta
       var map = new google.maps.Map(
-          document.getElementById('map'), {zoom: 12, center: atlanta});
-      // The marker, positioned at atlanta
-      var house = '${houseInfo}';
-      var marker = new google.maps.Marker({position: atlanta, map: map});
+          document.getElementById('map'), {zoom: 10, center: NY});
+      
+      var marker = new google.maps.Marker({position: NY, map: map});
+      /*
+      var locations;
+      for(var i = 0; i < houses.length; i++){
+        var newLocation = {lat: houses[i].latitude, lng: houses[i].longitude};
+        locations.push(newLocation);
+      }
+
+      // Create an array of alphabetical characters used to label the markers.
+      var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      var markers = locations.map(function(location, i){
+        return new google.maps.Marker({
+          position: location,
+          label: labels[i]
+        });
+      });
+      var markerCluster = new MarkerCluster(map, markers,  {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'}); 
+      */
     }
     </script>
-    
+
+    <script>
+      <script src="markerclusterer.js">
+    </script>
 
   </body>
 </html>
