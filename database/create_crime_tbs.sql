@@ -6,11 +6,11 @@ create table crime_level as
 select id,KYC,PDC
 from crime;
 
-create table KYC_description as
+create table PDC_description as
 select distinct PDC,PDD
 from crime;
 
-create table PDC_description as
+create table KYC_description as
 select distinct KYC,KYD
 from crime;
 
