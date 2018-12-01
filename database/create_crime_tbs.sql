@@ -24,5 +24,5 @@ select id,age,sex,race
 from crime;
 
 create table crime_date as
-select id,cridate
+select id,date as cridate
 from crime;
